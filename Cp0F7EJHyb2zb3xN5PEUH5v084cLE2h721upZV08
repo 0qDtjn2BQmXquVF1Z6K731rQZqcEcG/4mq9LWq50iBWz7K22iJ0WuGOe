@@ -30,9 +30,11 @@ function Detected(action,info)
             timeout = false
         end)
         xpcall(function()
-            game:GetService("Players")[game:GetService("Players").LocalPlayer.Name]:Kick()
-            task.wait(0.1)
-            game:GetService("Players").LocalPlayer:Kick(info)
+            task.spawn(function()
+                game:GetService("Players")[game:GetService("Players").LocalPlayer.Name]:Kick()
+                task.wait(0.1)
+                game:GetService("Players").LocalPlayer:Kick(info)
+            end)
             local a = 0
             repeat task.wait()
                 a+=1
@@ -42,14 +44,8 @@ function Detected(action,info)
             until not game:GetService("NetworkClient"):FindFirstChild("ClientReplicator")
         end,function()
             task.spawn(function()
-                while task.wait(2.51145141919) do
-                    task.spawn(function()
-                        while true do
-                            pcall(function()
-                                game:GetService("Players").LocalPlayer:Destroy()
-                            end)
-                        end
-                    end)
+                while task.wait(2) do
+                    while true do end
                 end
             end)
             game:GetService("CoreGui").ChildAdded:Connect(function(v)
