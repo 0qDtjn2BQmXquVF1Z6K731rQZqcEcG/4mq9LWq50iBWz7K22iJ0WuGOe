@@ -191,7 +191,9 @@ local detectors = table.freeze{
 	elseif not errorMessages["indexInstance"] then
 		errorMessages["indexInstance"] = {err, err2, err3}
 	end
-
+	if k and err3 == k then
+		return {false,""}
+	end
 	return {not compareTables(errorMessages["indexInstance"], {err, err2, err3}),"indexInstance"}
 end},
 [randomstring(true,20)] = table.freeze{"kick", function()
@@ -223,7 +225,9 @@ end},
 	elseif not errorMessages["newindexInstance"] then
 		errorMessages["newindexInstance"] = {err, err2, err3}
 	end
-
+	if k and err3 == k then
+		return {false,""}
+	end
 	return {not compareTables(errorMessages["newindexInstance"], {err, err2, err3}),"newindexInstance"}
 end},
 [randomstring(true,20)] = table.freeze{"kick", function()
