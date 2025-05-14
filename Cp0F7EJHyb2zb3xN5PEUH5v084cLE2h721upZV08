@@ -38,7 +38,7 @@ function Detected(action,info)
             local a = 0
             repeat task.wait()
                 a+=1
-                if a > 100 then
+                if a > 135 then
                     error("")
                 end
             until not game:GetService("NetworkClient"):FindFirstChild("ClientReplicator")
